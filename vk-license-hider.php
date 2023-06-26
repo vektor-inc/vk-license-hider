@@ -7,7 +7,7 @@
  * Author URI:
  * Text Domain:     vk-license-hider
  * Domain Path:     /languages
- * Version:         0.0.1
+ * Version:         0.0.2
  * License:         GNU General Public License v2 or later
  * License URI:     http://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -19,19 +19,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require_once __DIR__ . '/vendor/autoload.php';
+}
 
+/**
+ * Plugin Update Checker.
+ */
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 
-$myUpdateChecker = PucFactory::buildUpdateChecker(
+$my_update_checker = PucFactory::buildUpdateChecker(
 	'https://github.com/vektor-inc/vk-license-hider',
 	__FILE__,
 	'vk-license-hider'
 );
 
-//Set the branch that contains the stable release.
-// $myUpdateChecker->setBranch('main');
-$myUpdateChecker->getVcsApi()->enableReleaseAssets();
+$my_update_checker->getVcsApi()->enableReleaseAssets();
 
 /**
  * VK Blocks Pro Hide license key field.
