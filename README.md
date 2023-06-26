@@ -1,1 +1,1 @@
-# vk-license-hider
+# VK License Hider

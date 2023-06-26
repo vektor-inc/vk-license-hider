@@ -19,6 +19,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+require_once plugin_dir_path( __FILE__ ) . 'vendor/autoload.php';
+
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
+
+$myUpdateChecker = PucFactory::buildUpdateChecker(
+	'https://github.com/vektor-inc/vk-license-hider',
+	__FILE__,
+	'vk-license-hider'
+);
+
+//Set the branch that contains the stable release.
+// $myUpdateChecker->setBranch('main');
+$myUpdateChecker->getVcsApi()->enableReleaseAssets();
+
 /**
  * VK Blocks Pro Hide license key field.
  *
